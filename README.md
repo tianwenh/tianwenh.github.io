@@ -12,6 +12,7 @@
 - math Latex
 - link/backlink
 - music notation support?
+  - vex
 - sidebar toc
 - ssr
 - deployment automation

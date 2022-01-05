@@ -4,6 +4,7 @@ import { pages } from '../utils/pageData';
 // Code highlighting
 import 'prismjs/themes/prism.css';
 import 'normalize.css';
+import 'katex/dist/katex.css';
 import './App.css';
 
 import { Layout } from './Layout';
