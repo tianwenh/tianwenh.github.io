@@ -6,6 +6,8 @@ import remarkFrontmatter from 'remark-frontmatter';
 import rehypeSlug from 'rehype-slug';
 import rehypePrism from 'mdx-prism';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import pages from './plugins/pages';
+import path from 'path';
 
 export default defineConfig({
   plugins: [
@@ -28,5 +30,17 @@ export default defineConfig({
       jsxRuntime: 'classic',
     }),
     react(),
+    pages({
+      globs: [
+        {
+          dirname: __dirname,
+          filePattern: './foam/**/*.{mdx,md}',
+        },
+        {
+          dirname: path.resolve(__dirname, './pages'),
+          filePattern: './**/*.{mdx,md}',
+        },
+      ],
+    }),
   ],
 });
