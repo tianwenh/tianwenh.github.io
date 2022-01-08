@@ -20,7 +20,7 @@
   --spacing-10: 2.5rem;
   --spacing-12: 3rem;
 
-  --fontFamily: Roboto, Arial, sans-serif;
+  --fontFamily: Helvetica, Arial, sans-serif;
 
   --fontWeight-normal: 400;
   --fontWeight-medium: 500;
@@ -57,7 +57,7 @@
 :root.dark {
   --color-title: #d84242;
   --color-primary: #4a8fe9;
-  --color-text: #eeeeee;
+  --color-text: #eeeeeee6;
   --color-text-light: #7384a0;
   --color-background: #222222;
   --color-border: #ffffff33;
@@ -146,6 +146,7 @@ li > ul {
 }
 
 blockquote {
+  margin-left: calc(-1 * var(--spacing-4));
   color: var(--color-text-light);
   padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6);
   border-left: var(--spacing-1) solid var(--color-primary);

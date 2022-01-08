@@ -5,8 +5,7 @@ declare module '@pages' {
     subtitle: string;
     date: string;
     tags: string[];
-    // refees: stirng[]; // linked by
-    // refs: string[]; // link to
+    only: boolean;
     [key: string]: unknown;
   }
   export interface PageMetadata {

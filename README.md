@@ -18,3 +18,8 @@
 - deployment automation
 - dark mode
 - mdx js for mdx support
+- code splitting
+  - explore suspense
+    // TODO: VEX
+    // TODO: automation
+- make into package

@@ -36,11 +36,7 @@ export default defineConfig({
     pages({
       globs: [
         {
-          dirname: __dirname,
-          filePattern: './foam/**/*.{mdx,md}',
-        },
-        {
-          dirname: path.resolve(__dirname, './pages'),
+          basepath: path.resolve(__dirname, './pages'),
           filePattern: './**/*.{mdx,md}',
         },
       ],

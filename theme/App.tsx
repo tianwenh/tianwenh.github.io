@@ -37,6 +37,7 @@ export default function App() {
   );
 }
 
+// Scroll to top when navigating to new pages
 function useScrollToTop() {
   const { pathname } = useLocation();
 

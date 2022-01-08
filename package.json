@@ -7,7 +7,7 @@
     "clean": "rm -rf ./dist",
     "check": "tsc -w",
     "dev": "vite",
-    "build:static": "tsc && npm run lint && vite build",
+    "build:static": "npm run clean && tsc && npm run lint && vite build",
     "build": "npm run build:static && node ssr/prerender.js",
     "serve": "vite preview"
   },
