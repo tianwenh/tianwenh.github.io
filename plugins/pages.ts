@@ -41,6 +41,7 @@ async function generatePageMetadata(options: PageOptions): Promise<string> {
           const date = fm.data['date'] ?? 'unknown date';
           const tags = fm.data['tags'] ?? [];
           const only = fm.data['only'] ?? false;
+          const hide = fm.data['hide'] ?? false;
           const frontmatter: Frontmatter = {
             ...fm.data,
             title,
@@ -48,6 +49,7 @@ async function generatePageMetadata(options: PageOptions): Promise<string> {
             date,
             subtitle,
             only,
+            hide,
           };
           return {
             filepath,
@@ -61,7 +63,9 @@ async function generatePageMetadata(options: PageOptions): Promise<string> {
   const meta = ms.flat();
   // For dev mode, only load marked posts.
   const onlymeta = meta.filter((m) => m.frontmatter.only);
-  const metadata = onlymeta.length === 0 ? meta : onlymeta;
+  const onlyOrAll = onlymeta.length === 0 ? meta : onlymeta;
+  const metadata = onlyOrAll.filter((m) => !m.frontmatter.hide);
+
   const metadataWithComponent = metadata
     .map((m, i) => `{"component": Component${i},${JSON.stringify(m).slice(1)}`)
     .join(',');

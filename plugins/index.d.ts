@@ -6,6 +6,7 @@ declare module '@pages' {
     date: string;
     tags: string[];
     only: boolean;
+    hide: boolean;
     [key: string]: unknown;
   }
   export interface PageMetadata {

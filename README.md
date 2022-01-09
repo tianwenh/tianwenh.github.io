@@ -11,15 +11,13 @@
 - linkify heading
 - math Latex
 - link/backlink
-- music notation support?
+- music notation support TODO:
   - vex
 - sidebar toc
 - ssr
 - deployment automation
 - dark mode
 - mdx js for mdx support
-- code splitting
+- code splitting TODO:
   - explore suspense
-    // TODO: VEX
-    // TODO: automation
-- make into package
+- make into package TODO:
