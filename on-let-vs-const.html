@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAt9JREFUWEftV01IYmEUPZ+EiwgiWoiLoCct0wqEqIiCoLICRQg3/VC0mmgTQTXOZDkktGhRkJTSjxW4qKhVFJlCRKsWtShoU5ua2QRKirapF/dCMeYIMfFy44W3efreOd+5557vfQKASpKk7wC+CSG0+IKSZfkPAPfNzY1LSJL0Qwjx6wtwUyBkWf5JBH5/1crfMyAlhE6nkzOx+lfMLIGsAikKmEwm2Gw27Ozs8EU1NDSE0tLSD3k1Go1iYGAAXq8XKpUKfX19kOX0Pk8hQA+Mjo5iZmYGs7OzDLqwsICqqqokArm5uRBCIB6PJwFcXV2hvb0dgUAAkiShsrIS9/f3acl/iMC/nj4+PoZWq0V5eTlo1e9rcXER9fX1sFqtOD8/55/Hx8fR2tqKcDiMxsZGvqcYgbGxMXR3d3M7dnd3GWxra4sJU1VUVODh4UE5Al1dXXA4HJiamoLH42HQs7MzRCIRFBUVvSmjmAJ1dXVYWlrC+vo6E9FoNDg5OcHy8jJ6enrY2Nvb2xAmkynJotQzMuLfJvwfDxQXF+Pw8BChUIjfV1NTg9XVVXR2dmJtbQ1utxvT09MQcpoZ+SyBnJwcXF5e4vr6Gs3NzaCWkC/KysoQDAZxenqK/v5+CIfDkaRAdXU1O/SzBEg1Wn1hYSEMBgOcTicaGhpYCb/fj/z8fLS0tChnQiKwsrKC2tpaGI1GzM3N4enpiVvgcrlgsVg43BQzIRGYmJhAR0cHzGYzKBf29vbYkK9hRzmhKIHe3l7Y7Xa+JicnuQ0+n49bQaM5PDysLIFXoP39fTQ1NfH4HR0dcURTVJMiiipQUlICAo/FYsjLywNlw+3tLWhCLi4ukEgklCWgVqsZiHbFx8dH6PV6PD8/c6wcHBxAp9OlEmhra2OnbmxsYHNzM+0uRkFCI0ay0o6Yrubn51FQUIC7uzsMDg6+/W1kZIT3g+wXUVaBzCuQ8aNZxg+nmT6evwD1qc7gHFaxDAAAAABJRU5ErkJggg==" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTW</title>
+  <script type="module" crossorigin src="/assets/index.bb22a6a5.js"></script>
+  <link rel="modulepreload" href="/assets/vendor.08379ce7.js">
+  <link rel="stylesheet" href="/assets/index.8e7d09d6.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="layout-container"><header class="layout-head"><h3><a href="/">HTW</a><span class="dark-toggle">🌔</span></h3></header><main><header><h2 class="page-title"><a href="/on-let-vs-const">On let vs const</a></h2><p class="page-subtitle">So which one should I use?</p><small><time dateTime="12/21/2019" class="page-info">12/21/2019</time><a class="page-info" href="/tags/js">#<!-- -->js</a></small></header><hr/><p>My <a href="/what-is-javascript-made-of/">previous post</a> included this paragraph:</p>
+<blockquote>
+<p><strong><code>let</code> vs <code>const</code> vs <code>var</code></strong>: Usually you want <code>let</code>. If you want to forbid assignment to this variable, you can use <code>const</code>. (Some codebases and coworkers are pedantic and force you to use <code>const</code> when there is only one assignment.)</p>
+</blockquote>
+<p>This turned out to be very controversial, sparking conversations on Twitter and Reddit. It seems that the majority view (or at least, the most vocally expressed view) is that one should <em>use <code>const</code> wherever possible,</em> only falling back to <code>let</code> where necessary, as can be enforced with the <a target="_blank" href="https://eslint.org/docs/rules/prefer-const"><code>prefer-const</code></a> ESLint rule.</p>
+<p>In this post, I will briefly summarize some of the arguments and counter-arguments I&#x27;ve encountered, as well as my personal conclusion on this topic.</p>
+<h2 id="why-prefer-const"><a class="header-anchor" href="/on-let-vs-const#why-prefer-const">#</a>Why <code>prefer-const</code></h2>
+<ul>
+<li><strong>One Way to Do It</strong>: It is mental overhead to have to choose between <code>let</code> and <code>const</code> every time. A rule like &quot;always use <code>const</code> where it works&quot; lets you stop thinking about it and can be enforced by a linter.</li>
+<li><strong>Reassignments May Cause Bugs</strong>: In a longer function, it can be easy to miss when a variable is reassigned. This may cause bugs. Particularly in closures, <code>const</code> gives you confidence you&#x27;ll always &quot;see&quot; the same value.</li>
+<li><strong>Learning About Mutation</strong>: Folks new to JavaScript often get confused thinking <code>const</code> implies immutability. However, one could argue that it&#x27;s important to learn the difference between variable mutation and assignment anyway, and preferring <code>const</code> forces you to confront this distinction early on.</li>
+<li><strong>Meaningless Assignments</strong>: Sometimes, an assignment doesn&#x27;t make sense at all. For example, with React Hooks, the values you get from a Hook like <code>useState</code> are more like parameters. They flow in one direction. Seeing an error on their assignment helps you learn earlier about the React data flow.</li>
+<li><strong>Performance Benefits</strong>: There are occasional claims that JavaScript engines could make code using <code>const</code> run faster due to the knowledge the variable won&#x27;t be reassigned.</li>
+</ul>
+<h2 id="why-not-prefer-const"><a class="header-anchor" href="/on-let-vs-const#why-not-prefer-const">#</a>Why Not <code>prefer-const</code></h2>
+<ul>
+<li><strong>Loss of Intent</strong>: If we force <code>const</code> everywhere it can work, we lose the ability to communicate whether it was <em>important</em> for something to not be reassigned.</li>
+<li><strong>Confusion with Immutability</strong>: In every discussion about why you should prefer <code>const</code>, someone always confuses with immutability. This is unsurprising, as both assignment and mutation use the same <code>=</code> operator. In response, people are usually told that they should &quot;just learn the language&quot;. However, the counter-argument is that if a feature that prevents mostly beginner mistakes is confusing to beginners, it isn&#x27;t very helpful. And unfortunately, it doesn&#x27;t help prevent mutation mistakes which span across modules and affect everyone.</li>
+<li><strong>Pressure to Avoid Redeclaring</strong>: A <code>const</code>-first codebase creates a pressure to not use <code>let</code> for conditionally assigned variables. For example, you might write <code>const a = cond ? b : c</code> instead of an <code>if</code> condition, even if both <code>b</code> and <code>c</code> branches are convoluted and giving them explicit names is awkward.</li>
+<li><strong>Reassignments May Not Cause Bugs</strong>: There are three common cases when reassignments cause bugs: when the scope is very large (such as module scope or huge functions), when the value is a parameter (so it&#x27;s unexpected that it would be equal to something other than what was passed), and when a variable is used in a nested function. However, in many codebases most variables won&#x27;t satisfy either of those cases, and parameters can&#x27;t be marked as constant at all.</li>
+<li><strong>No Performance Benefits</strong>: It is my understanding that the engines are already aware of which variables are only assigned once -- even if you use <code>var</code> or <code>let</code>. If we insist on speculating, we could just as well speculate that extra checks can <em>create</em> performance cost rather than reduce it. But really, engines are smart.</li>
+</ul>
+<h2 id="my-conclusion"><a class="header-anchor" href="/on-let-vs-const#my-conclusion">#</a>My Conclusion</h2>
+<p>I don&#x27;t care.</p>
+<p>I would use whatever convention already exists in the codebase.</p>
+<p>If you care, use a linter that automates checking and fixing this so that changing <code>let</code> to <code>const</code> doesn&#x27;t become a delay in code review.</p>
+<p>Finally, remember that linters exist to serve <em>you</em>. If a linter rule annoys you and your team, delete it. It may not be worth it. Learn from your own mistakes.</p><hr/><footer>EOF</footer></main></div>
+  </div>
+  
+</body>
+
+</html>

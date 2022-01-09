@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAt9JREFUWEftV01IYmEUPZ+EiwgiWoiLoCct0wqEqIiCoLICRQg3/VC0mmgTQTXOZDkktGhRkJTSjxW4qKhVFJlCRKsWtShoU5ua2QRKirapF/dCMeYIMfFy44W3efreOd+5557vfQKASpKk7wC+CSG0+IKSZfkPAPfNzY1LSJL0Qwjx6wtwUyBkWf5JBH5/1crfMyAlhE6nkzOx+lfMLIGsAikKmEwm2Gw27Ozs8EU1NDSE0tLSD3k1Go1iYGAAXq8XKpUKfX19kOX0Pk8hQA+Mjo5iZmYGs7OzDLqwsICqqqokArm5uRBCIB6PJwFcXV2hvb0dgUAAkiShsrIS9/f3acl/iMC/nj4+PoZWq0V5eTlo1e9rcXER9fX1sFqtOD8/55/Hx8fR2tqKcDiMxsZGvqcYgbGxMXR3d3M7dnd3GWxra4sJU1VUVODh4UE5Al1dXXA4HJiamoLH42HQs7MzRCIRFBUVvSmjmAJ1dXVYWlrC+vo6E9FoNDg5OcHy8jJ6enrY2Nvb2xAmkynJotQzMuLfJvwfDxQXF+Pw8BChUIjfV1NTg9XVVXR2dmJtbQ1utxvT09MQcpoZ+SyBnJwcXF5e4vr6Gs3NzaCWkC/KysoQDAZxenqK/v5+CIfDkaRAdXU1O/SzBEg1Wn1hYSEMBgOcTicaGhpYCb/fj/z8fLS0tChnQiKwsrKC2tpaGI1GzM3N4enpiVvgcrlgsVg43BQzIRGYmJhAR0cHzGYzKBf29vbYkK9hRzmhKIHe3l7Y7Xa+JicnuQ0+n49bQaM5PDysLIFXoP39fTQ1NfH4HR0dcURTVJMiiipQUlICAo/FYsjLywNlw+3tLWhCLi4ukEgklCWgVqsZiHbFx8dH6PV6PD8/c6wcHBxAp9OlEmhra2OnbmxsYHNzM+0uRkFCI0ay0o6Yrubn51FQUIC7uzsMDg6+/W1kZIT3g+wXUVaBzCuQ8aNZxg+nmT6evwD1qc7gHFaxDAAAAABJRU5ErkJggg==" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTW</title>
+  <script type="module" crossorigin src="/assets/index.bb22a6a5.js"></script>
+  <link rel="modulepreload" href="/assets/vendor.08379ce7.js">
+  <link rel="stylesheet" href="/assets/index.8e7d09d6.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="layout-container"><header class="layout-head"><h3><a href="/">HTW</a><span class="dark-toggle">🌔</span></h3></header><main><header><h2 class="page-title"><a href="/goodbye-clean-code">Goodbye, Clean Code</a></h2><p class="page-subtitle">Let clean code guide you. Then let it go.</p><small><time dateTime="1/10/2020" class="page-info">1/10/2020</time><a class="page-info" href="/tags/code">#<!-- -->code</a><a class="page-info" href="/tags/js">#<!-- -->js</a></small></header><hr/><p>It was a late evening.</p>
+<p>My colleague has just checked in the code that they&#x27;ve been writing all week. We were working on a graphics editor canvas, and they implemented the ability to resize shapes like rectangles and ovals by dragging small handles at their edges.</p>
+<p>The code worked.</p>
+<p>But it was repetitive. Each shape (such as a rectangle or an oval) had a different set of handles, and dragging each handle in different directions affected the shape&#x27;s position and size in a different way. If the user held Shift, we&#x27;d also need to preserve proportions while resizing. There was a bunch of math.</p>
+<p>The code looked something like this:</p>
+<pre class="language-jsx"><code class="language-jsx"><span class="token keyword">let</span> <span class="token maybe-class-name">Rectangle</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">resizeTopLeft</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">resizeTopRight</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">resizeBottomLeft</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">resizeBottomRight</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> <span class="token maybe-class-name">Oval</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">resizeLeft</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">resizeRight</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">resizeTop</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">resizeBottom</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> <span class="token maybe-class-name">Header</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">resizeLeft</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">resizeRight</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> <span class="token maybe-class-name">TextBlock</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">resizeTopLeft</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">resizeTopRight</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">resizeBottomLeft</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">resizeBottomRight</span><span class="token punctuation">(</span><span class="token parameter">position<span class="token punctuation">,</span> size<span class="token punctuation">,</span> preserveAspect<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 10 repetitive lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>That repetitive math was really bothering me.</p>
+<p>It wasn’t <em>clean</em>.</p>
+<p>Most of the repetition was between similar directions. For example, <code>Oval.resizeLeft()</code> had similarities with <code>Header.resizeLeft()</code>. This was because they both dealt with dragging the handle on the left side.</p>
+<p>The other similarity was between the methods for the same shape. For example, <code>Oval.resizeLeft()</code> had similarities with the other <code>Oval</code> methods. This was because they all dealt with ovals. There was also some duplication between <code>Rectangle</code>, <code>Header</code>, and <code>TextBlock</code> because text blocks <em>were</em> rectangles.</p>
+<p>I had an idea.</p>
+<p>We could <em>remove all duplication</em> by grouping the code like this instead:</p>
+<pre class="language-jsx"><code class="language-jsx"><span class="token keyword">let</span> <span class="token maybe-class-name">Directions</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">top</span><span class="token punctuation">(</span><span class="token parameter"><span class="token spread operator">...</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 5 unique lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">left</span><span class="token punctuation">(</span><span class="token parameter"><span class="token spread operator">...</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 5 unique lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">bottom</span><span class="token punctuation">(</span><span class="token parameter"><span class="token spread operator">...</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 5 unique lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">right</span><span class="token punctuation">(</span><span class="token parameter"><span class="token spread operator">...</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 5 unique lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> <span class="token maybe-class-name">Shapes</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function"><span class="token maybe-class-name">Oval</span></span><span class="token punctuation">(</span><span class="token parameter"><span class="token spread operator">...</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 5 unique lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function"><span class="token maybe-class-name">Rectangle</span></span><span class="token punctuation">(</span><span class="token parameter"><span class="token spread operator">...</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 5 unique lines of math</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>and then composing their behaviors:</p>
+<pre class="language-jsx"><code class="language-jsx"><span class="token keyword">let</span> <span class="token punctuation">{</span> top<span class="token punctuation">,</span> bottom<span class="token punctuation">,</span> left<span class="token punctuation">,</span> right <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token maybe-class-name">Directions</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token parameter">directions</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 20 lines of code</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> fourCorners <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token punctuation">[</span>top<span class="token punctuation">,</span> left<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token punctuation">[</span>top<span class="token punctuation">,</span> right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token punctuation">[</span>bottom<span class="token punctuation">,</span> left<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token punctuation">[</span>bottom<span class="token punctuation">,</span> right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> fourSides <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token punctuation">[</span>bottom<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> twoSides <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">createHandle</span><span class="token punctuation">(</span><span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">createBox</span><span class="token punctuation">(</span><span class="token parameter">shape<span class="token punctuation">,</span> handles</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 20 lines of code</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token maybe-class-name">Rectangle</span> <span class="token operator">=</span> <span class="token function">createBox</span><span class="token punctuation">(</span><span class="token maybe-class-name">Shapes</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Rectangle</span></span><span class="token punctuation">,</span> fourCorners<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token maybe-class-name">Oval</span> <span class="token operator">=</span> <span class="token function">createBox</span><span class="token punctuation">(</span><span class="token maybe-class-name">Shapes</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Oval</span></span><span class="token punctuation">,</span> fourSides<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token maybe-class-name">Header</span> <span class="token operator">=</span> <span class="token function">createBox</span><span class="token punctuation">(</span><span class="token maybe-class-name">Shapes</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Rectangle</span></span><span class="token punctuation">,</span> twoSides<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token maybe-class-name">TextBox</span> <span class="token operator">=</span> <span class="token function">createBox</span><span class="token punctuation">(</span><span class="token maybe-class-name">Shapes</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Rectangle</span></span><span class="token punctuation">,</span> fourCorners<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The code is half the total size, and the duplication is gone completely! So <em>clean</em>. If we want to change the behavior for a particular direction or a shape, we could do it in a single place instead of updating methods all over the place.</p>
+<p>It was already late at night (I got carried away). I checked in my refactoring to master and went to bed, proud of how I untangled my colleague&#x27;s messy code.</p>
+<h2 id="the-next-morning"><a class="header-anchor" href="/goodbye-clean-code#the-next-morning">#</a>The Next Morning</h2>
+<p>... did not go as expected.</p>
+<p>My boss invited me for a one-on-one chat where they politely asked me to revert my change. I was aghast. The old code was a mess, and mine was <em>clean</em>!</p>
+<p>I begrudgingly complied, but it took me years to see they were right.</p>
+<h2 id="its-a-phase"><a class="header-anchor" href="/goodbye-clean-code#its-a-phase">#</a>It’s a Phase</h2>
+<p>Obsessing with &quot;clean code&quot; and removing duplication is a phase many of us go through. When we don&#x27;t feel confident in our code, it is tempting to attach our sense of self-worth and professional pride to something that can be measured. A set of strict lint rules, a naming schema, a file structure, a lack of duplication.</p>
+<p>You can&#x27;t automate removing duplication, but it <em>does</em> get easier with practice. You can usually tell whether there&#x27;s less or more of it after every change. As a result, removing duplication feels like improving some objective metric about the code. Worse, it messes with people&#x27;s sense of identity: <em>&quot;I&#x27;m the kind of person who writes clean code&quot;</em>. It&#x27;s as powerful as any sort of self-deception.</p>
+<p>Once we learn how to create <a target="_blank" href="https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction">abstractions</a>, it is tempting to get high on that ability, and pull abstractions out of thin air whenever we see repetitive code. After a few years of coding, we see repetition <em>everywhere</em> -- and abstracting is our new superpower. If someone tells us that abstraction is a <em>virtue</em>, we&#x27;ll eat it. And we&#x27;ll start judging other people for not worshipping &quot;cleanliness&quot;.</p>
+<p>I see now that my &quot;refactoring&quot; was a disaster in two ways:</p>
+<ul>
+<li>
+<p>Firstly, I didn&#x27;t talk to the person who wrote it. I rewrote the code and checked it in without their input. Even if it <em>was</em> an improvement (which I don&#x27;t believe anymore), this is a terrible way to go about it. A healthy engineering team is constantly <em>building trust</em>. Rewriting your teammate&#x27;s code without a discussion is a huge blow to your ability to effectively collaborate on a codebase together.</p>
+</li>
+<li>
+<p>Secondly, nothing is free. My code traded the ability to change requirements for reduced duplication, and it was not a good trade. For example, we later needed many special cases and behaviors for different handles on different shapes. My abstraction would have to become several times more convoluted to afford that, whereas with the original &quot;messy&quot; version such changes stayed easy as cake.</p>
+</li>
+</ul>
+<p>Am I saying that you should write &quot;dirty&quot; code? No. I suggest to think deeply about what you mean when you say &quot;clean&quot; or &quot;dirty&quot;. Do you get a feeling of revolt? Righteousness? Beauty? Elegance? How sure are you that you can name the concrete engineering outcomes corresponding to those qualities? How exactly do they affect the way the code is written and <a href="/optimized-for-change/">modified</a>?</p>
+<p>I sure didn&#x27;t think deeply about any of those things. I thought a lot about how the code <em>looked</em> -- but not about how it <em>evolved</em> with a team of squishy humans.</p>
+<p>Coding is a journey. Think how far you came from your first line of code to where you are now. I reckon it was a joy to see for the first time how extracting a function or refactoring a class can make convoluted code simple. If you find pride in your craft, it is tempting to pursue cleanliness in code. Do it for a while.</p>
+<p>But don&#x27;t stop there. Don&#x27;t be a clean code zealot. Clean code is not a goal. It&#x27;s an attempt to make some sense out of the immense complexity of systems we&#x27;re dealing with. It&#x27;s a defense mechanism when you&#x27;re not yet sure how a change would affect the codebase but you need guidance in a sea of unknowns.</p>
+<p>Let clean code guide you. <strong>Then let it go.</strong></p><hr/><footer>EOF</footer></main></div>
+  </div>
+  
+</body>
+
+</html>
