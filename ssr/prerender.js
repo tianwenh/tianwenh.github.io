@@ -22,11 +22,12 @@ function slugifyFilepath(filepath, basepath) {
   return slug;
 }
 
+const vite = await createServer({
+  server: { middlewareMode: 'ssr' },
+});
+
 // TODO: only posts and index are SSRed, not other routes (tags etc)
 async function prerender() {
-  const vite = await createServer({
-    server: { middlewareMode: 'ssr' },
-  });
   const { render } = await vite.ssrLoadModule(serverPath);
   const template = await fs.readFile(indexHtmlPath, 'utf-8');
   const pagePaths = await fg(globPattern);
@@ -50,4 +51,5 @@ async function prerender() {
 
 prerender().then(() => {
   console.log('SSR pages generated...');
+  vite.close();
 });
