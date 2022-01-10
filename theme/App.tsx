@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { pages } from '../pages-plugin/utils/pageData';
 // Code highlighting
 import 'prismjs/themes/prism.css';
@@ -11,6 +11,7 @@ import { Layout } from './Layout';
 import { Pages } from './Pages';
 import { Page } from './Page';
 import { Tags } from './Tags';
+import { NotFound } from './NotFound';
 
 export default function App() {
   useScrollToTop();
@@ -31,7 +32,7 @@ export default function App() {
             ></Route>
           );
         })}
-        <Route path="*" element={<Navigate to="/" />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Route>
     </Routes>
   );
