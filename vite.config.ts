@@ -6,7 +6,7 @@ import remarkFrontmatter from 'remark-frontmatter';
 import rehypeSlug from 'rehype-slug';
 import rehypePrism from 'mdx-prism';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import pages from './plugins/pages';
+import pages from './pages-plugin/plugins/pages';
 import path from 'path';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';

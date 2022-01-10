@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { pages } from '../utils/pageData';
+import { pages } from '../pages-plugin/utils/pageData';
 // Code highlighting
 import 'prismjs/themes/prism.css';
 import 'normalize.css';
