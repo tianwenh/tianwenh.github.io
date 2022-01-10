@@ -1,0 +1,3 @@
+[submodule "pages-plugin"]
+	path = pages-plugin
+	url = https://github.com/tianwenh/pages-plugin
