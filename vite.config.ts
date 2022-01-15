@@ -12,12 +12,9 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import ssg from './pages-plugin/plugins/ssg';
 
-// TODO: Consider auto ssg all paths.
-const globBase = path.resolve('./pages');
-const globPattern = path.resolve(globBase, './**/*.{mdx,md}');
-const clientDistPath = './dist';
-const indexHtmlPath = path.resolve(clientDistPath, 'index.html');
-const serverPath = './ssr/entry-server.tsx';
+const distPath = path.resolve('./dist');
+const templatePath = path.resolve(distPath, 'index.html');
+const serverPath = path.resolve('./ssr/entry-server.tsx');
 
 export default defineConfig({
   plugins: [
@@ -50,11 +47,10 @@ export default defineConfig({
       ],
     }),
     ssg({
-      globBase,
-      globPattern,
-      clientDistPath,
-      indexHtmlPath,
+      distPath,
+      templatePath,
       serverPath,
+      entryRoutes: ['/', '/404'],
     }),
   ],
 });
