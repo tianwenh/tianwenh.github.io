@@ -67,4 +67,4 @@ Change code under `./theme`.
 - SSR
 - Deployment automation
 - Dark mode
-- Make into separate package TODO:
+- Submodule plugins

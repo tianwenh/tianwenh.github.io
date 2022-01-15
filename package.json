@@ -8,8 +8,9 @@
     "clean": "rm -rf ./dist",
     "check": "tsc -w",
     "dev": "vite",
-    "build:static": "npm run clean && tsc && npm run lint && vite build",
-    "build": "npm run build:static && node ssr/prerender.js",
+    "prebuild": "npm run clean && tsc && npm run lint",
+    "build:client": "npm run prebuild && vite build",
+    "build": "npm run prebuild && vite build --mode ssg",
     "serve": "vite preview",
     "deploy": "npm run build && gh-pages -d dist"
   },
