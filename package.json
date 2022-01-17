@@ -3,6 +3,11 @@
   "homepage": "https://tianwenh.github.io",
   "version": "0.1.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tianwenh/tianwenh.github.io"
+  },
+  "author": "tianwenh",
   "scripts": {
     "lint": "eslint .",
     "clean": "rm -rf ./dist",

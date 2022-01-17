@@ -6,7 +6,8 @@ See [how-this-blog-is-built](https://tianwenh.github.io/how-this-blog-is-built) 
 
 ```
 git clone
-npm install
+pnpm i
+# or npm install
 ```
 
 ## Dev
