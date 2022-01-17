@@ -120,4 +120,4 @@ I plan to make it into a package, so that I can use it for multiple purposes:
 
 I said it easy, it in fact does require a week to build up a plan, research best practices, tweak around css/js, and debugging.
 
-Finally, code is [here](https://github.com/tianwenh/tianwenh.github.io).
+Finally, [code is here](https://github.com/tianwenh/tianwenh.github.io).
