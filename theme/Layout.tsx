@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { getTheme, setTheme } from '../pages-plugin/utils/utils';
+import { getTheme, setTheme } from '@tianwenh/utils';
 
 // Container of all pages.
 export const Layout: React.FC = () => {

@@ -8,6 +8,7 @@ const distPath = path.resolve('./dist');
 const templatePath = path.resolve(distPath, 'index.html');
 const serverPath = path.resolve('./theme/entry-server.tsx');
 
+// TODO: move plugins into packages.
 export default defineConfig({
   plugins: [
     mdx(),

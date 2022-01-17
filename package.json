@@ -20,6 +20,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@tianwenh/utils": "^0.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1"
@@ -29,17 +30,17 @@
     "@tianwenh/eslint-config": "^0.1.1",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^17.0.8",
-    "@types/react": "^17.0.33",
-    "@types/react-dom": "^17.0.10",
-    "@vitejs/plugin-react": "^1.0.7",
-    "eslint": "^8.6.0",
-    "fast-glob": "^3.2.7",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "@vitejs/plugin-react": "^1.1.4",
+    "eslint": "^8.7.0",
+    "fast-glob": "^3.2.11",
     "fs-extra": "^10.0.0",
     "gh-pages": "^3.2.3",
     "gray-matter": "^4.0.3",
     "katex": "^0.15.2",
     "mdx-prism": "^0.3.4",
-    "node": "^17.3.0",
+    "node": "^17.3.1",
     "normalize.css": "^8.0.1",
     "prismjs": "^1.26.0",
     "rehype-autolink-headings": "^6.1.1",
@@ -48,7 +49,8 @@
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
-    "typescript": "^4.4.4",
-    "vite": "^2.7.2"
+    "rollup": "^2.64.0",
+    "typescript": "^4.5.4",
+    "vite": "^2.7.12"
   }
 }
