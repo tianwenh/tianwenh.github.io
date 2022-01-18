@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { className, slugify } from '@tianwenh/utils';
+import { className, slugify } from '@tianwenh/utils/string';
 
 interface Props {
   tag: string;

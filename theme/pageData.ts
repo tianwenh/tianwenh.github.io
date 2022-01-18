@@ -1,8 +1,7 @@
 import unsortedPages from '@pages';
 import type { PageMetadata } from '@pages';
-import { slugify } from '@tianwenh/utils';
+import { slugify } from '@tianwenh/utils/string';
 
-// TODO: move to utils for helpers
 export const pages = unsortedPages.sort(
   (a, b) =>
     new Date(b.frontmatter.date).getTime() -
