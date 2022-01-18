@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Tag } from './Tag';
-import { pagesByTagSlug, tags } from '../pages-plugin/utils/pageData';
+import { pagesByTagSlug, tags } from './pageData';
 import { Pages } from './Pages';
 
 const matchedPages = (tagSlug: string | undefined) => {
