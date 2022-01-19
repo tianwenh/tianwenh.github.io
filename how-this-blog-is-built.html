@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAt9JREFUWEftV01IYmEUPZ+EiwgiWoiLoCct0wqEqIiCoLICRQg3/VC0mmgTQTXOZDkktGhRkJTSjxW4qKhVFJlCRKsWtShoU5ua2QRKirapF/dCMeYIMfFy44W3efreOd+5557vfQKASpKk7wC+CSG0+IKSZfkPAPfNzY1LSJL0Qwjx6wtwUyBkWf5JBH5/1crfMyAlhE6nkzOx+lfMLIGsAikKmEwm2Gw27Ozs8EU1NDSE0tLSD3k1Go1iYGAAXq8XKpUKfX19kOX0Pk8hQA+Mjo5iZmYGs7OzDLqwsICqqqokArm5uRBCIB6PJwFcXV2hvb0dgUAAkiShsrIS9/f3acl/iMC/nj4+PoZWq0V5eTlo1e9rcXER9fX1sFqtOD8/55/Hx8fR2tqKcDiMxsZGvqcYgbGxMXR3d3M7dnd3GWxra4sJU1VUVODh4UE5Al1dXXA4HJiamoLH42HQs7MzRCIRFBUVvSmjmAJ1dXVYWlrC+vo6E9FoNDg5OcHy8jJ6enrY2Nvb2xAmkynJotQzMuLfJvwfDxQXF+Pw8BChUIjfV1NTg9XVVXR2dmJtbQ1utxvT09MQcpoZ+SyBnJwcXF5e4vr6Gs3NzaCWkC/KysoQDAZxenqK/v5+CIfDkaRAdXU1O/SzBEg1Wn1hYSEMBgOcTicaGhpYCb/fj/z8fLS0tChnQiKwsrKC2tpaGI1GzM3N4enpiVvgcrlgsVg43BQzIRGYmJhAR0cHzGYzKBf29vbYkK9hRzmhKIHe3l7Y7Xa+JicnuQ0+n49bQaM5PDysLIFXoP39fTQ1NfH4HR0dcURTVJMiiipQUlICAo/FYsjLywNlw+3tLWhCLi4ukEgklCWgVqsZiHbFx8dH6PV6PD8/c6wcHBxAp9OlEmhra2OnbmxsYHNzM+0uRkFCI0ay0o6Yrubn51FQUIC7uzsMDg6+/W1kZIT3g+wXUVaBzCuQ8aNZxg+nmT6evwD1qc7gHFaxDAAAAABJRU5ErkJggg==" />
   <title>HTW</title>
-  <script type="module" crossorigin src="/assets/index.cb43b531.js"></script>
+  <script type="module" crossorigin src="/assets/index.a6831fe8.js"></script>
   <link rel="modulepreload" href="/assets/vendor.9e65186c.js">
   <link rel="stylesheet" href="/assets/index.105cf5f3.css">
 </head>
@@ -20,7 +20,7 @@
 <p>Check out <a target="_blank" href="https://github.com/tianwenh/tianwenh.github.io">github</a> for source code.</p>
 </blockquote>
 <p>Instead of learning all the exsiting static site generators, I decided to start 2022 by building my own.</p>
-<h2 id="whats-the-option"><a class="header-anchor" href="/how-this-blog-is-built#whats-the-option">#</a>What&#x27;s the option?</h2>
+<h2 id="whats-the-option"><a class="header-anchor" href="#whats-the-option">#</a>What&#x27;s the option?</h2>
 <p>There are several options having your own blog:</p>
 <ol start="0">
 <li>Write your own SSG;</li>
@@ -28,7 +28,7 @@
 <li>Use existing SSG + writing custom theme;</li>
 </ol>
 <p>The time needed for learning/hacking existing theme and SSG is probably similar to writing your own. Even if not, knowing all the details in the beginning probably will compensate the costs later on.</p>
-<h2 id="static-site-generator-breakdown"><a class="header-anchor" href="/how-this-blog-is-built#static-site-generator-breakdown">#</a>Static site generator breakdown</h2>
+<h2 id="static-site-generator-breakdown"><a class="header-anchor" href="#static-site-generator-breakdown">#</a>Static site generator breakdown</h2>
 <p>Break down features that I need:</p>
 <ul>
 <li>Light weight dev experience;</li>
@@ -39,11 +39,11 @@
 <li>Dark mode;</li>
 <li>Custom theming;</li>
 </ul>
-<h2 id="lightweight-dev-experience"><a class="header-anchor" href="/how-this-blog-is-built#lightweight-dev-experience">#</a>Lightweight dev experience</h2>
+<h2 id="lightweight-dev-experience"><a class="header-anchor" href="#lightweight-dev-experience">#</a>Lightweight dev experience</h2>
 <p>I am not working a billion dollar project. <a target="_blank" href="https://vitejs.dev/">Vite</a> comes in handy for what I expectes. Fast load, SSR support, extensible, reasonable default setups, etc.</p>
 <p>Starting the project with its official <a target="_blank" href="https://vitejs.dev/guide/#trying-vite-online">react-ts template</a>, just a few clicks, website is up running.</p>
 <p>Other general step up (eslint, prettier) are omitted here, but you can find resources online or copy my template.</p>
-<h2 id="mdx-and-customization"><a class="header-anchor" href="/how-this-blog-is-built#mdx-and-customization">#</a>MDX and customization</h2>
+<h2 id="mdx-and-customization"><a class="header-anchor" href="#mdx-and-customization">#</a>MDX and customization</h2>
 <p>The next big piece is MDX support. Mostly, follow <a target="_blank" href="https://mdxjs.com/">mdxjs</a> tutorial.</p>
 <p>Once MDX plugin is install, it is time for more MDX plugins:</p>
 <ul>
@@ -54,15 +54,15 @@
 <li><code>rehype-slug</code>, <code>rehype-autolink-headings</code> for linkify headings;</li>
 </ul>
 <p>Just follow github repo tutoirals, install and add to <code>vite.config.ts</code>.</p>
-<h3 id="music-notation"><a class="header-anchor" href="/how-this-blog-is-built#music-notation">#</a>Music notation</h3>
+<h3 id="music-notation"><a class="header-anchor" href="#music-notation">#</a>Music notation</h3>
 <p>For music notation rendering, I ended up with building <code>Vexflow</code> React components and calling them from mdx. Considered <code>lilypond</code>, it seems to be too heavy for my usage.</p>
-<h3 id="override-mdx-component-rendering"><a class="header-anchor" href="/how-this-blog-is-built#override-mdx-component-rendering">#</a>Override MDX component rendering</h3>
+<h3 id="override-mdx-component-rendering"><a class="header-anchor" href="#override-mdx-component-rendering">#</a>Override MDX component rendering</h3>
 <p>I also implemented my own <code>MdxLink</code> so that</p>
 <ul>
 <li>Links always jump to new pages;</li>
 <li>Extensions are dropped for correct deeplink routing;</li>
 </ul>
-<h2 id="frontmatter"><a class="header-anchor" href="/how-this-blog-is-built#frontmatter">#</a>Frontmatter</h2>
+<h2 id="frontmatter"><a class="header-anchor" href="#frontmatter">#</a>Frontmatter</h2>
 <p>Frontmatter is metadata for each posts. There are 4 main properties I use:</p>
 <ul>
 <li>title: UUID for each post;</li>
@@ -71,7 +71,7 @@
 <li>tags: used for grouping posts;</li>
 </ul>
 <p>This is a pretty standard way of organizing blog posts.</p>
-<h2 id="grab-pages"><a class="header-anchor" href="/how-this-blog-is-built#grab-pages">#</a>Grab pages</h2>
+<h2 id="grab-pages"><a class="header-anchor" href="#grab-pages">#</a>Grab pages</h2>
 <p>SSG is pages(similar to config) driven. frontmatter, Pages are essentailly md/mdx files.</p>
 <p>I wrote a <code>pages</code> plugin for vite, so that it auto grabs pages(config) from certain folders, parse then rendering them in my custom theme.</p>
 <p>Higher level, it works this way:</p>
@@ -81,24 +81,24 @@
 <li>Theme TS files import metadata from <code>@pages</code>;</li>
 <li>Rendering each static file as a post, metadata as list of posts;</li>
 </ol>
-<h2 id="custom-theming"><a class="header-anchor" href="/how-this-blog-is-built#custom-theming">#</a>Custom theming</h2>
+<h2 id="custom-theming"><a class="header-anchor" href="#custom-theming">#</a>Custom theming</h2>
 <p>My theme is pretty minimal. I took design inspiration from <a target="_blank" href="https://overreacted.io">overreacted.io</a>. Just tweak around css to make it not ugly...</p>
 <p>I also made dark mode. It auto detects user preference, and persists user setup in local storage.</p>
-<h2 id="ssr"><a class="header-anchor" href="/how-this-blog-is-built#ssr">#</a>SSR</h2>
+<h2 id="ssr"><a class="header-anchor" href="#ssr">#</a>SSR</h2>
 <p>To begin, follow vite SSR tutoirals.I did some modification to fit in my use case.</p>
-<h2 id="deploy-automation"><a class="header-anchor" href="/how-this-blog-is-built#deploy-automation">#</a>Deploy automation</h2>
+<h2 id="deploy-automation"><a class="header-anchor" href="#deploy-automation">#</a>Deploy automation</h2>
 <p>For deployment, <code>gh-pages</code> is used for manual push. I also created a github action that auto build and deploy the latest push on <code>main</code>.</p>
-<h2 id="how-to-use"><a class="header-anchor" href="/how-this-blog-is-built#how-to-use">#</a>How to use</h2>
+<h2 id="how-to-use"><a class="header-anchor" href="#how-to-use">#</a>How to use</h2>
 <p>Read project <a target="_blank" href="https://github.com/tianwenh/tianwenh.github.io">README</a> for detailed instructions.</p>
 <p>For writing posts, just add new pages, and <code>git push</code>.</p>
-<h2 id="future-plans"><a class="header-anchor" href="/how-this-blog-is-built#future-plans">#</a>Future plans</h2>
+<h2 id="future-plans"><a class="header-anchor" href="#future-plans">#</a>Future plans</h2>
 <p>I plan to make it into a package, so that I can use it for multiple purposes:</p>
 <ul>
 <li>Serving docs for projects;</li>
 <li>Jupyter Notebook-ish interactive playground for personal code study;</li>
 <li>Foam/roam research-ish rendering;</li>
 </ul>
-<h2 id="conclusion"><a class="header-anchor" href="/how-this-blog-is-built#conclusion">#</a>Conclusion</h2>
+<h2 id="conclusion"><a class="header-anchor" href="#conclusion">#</a>Conclusion</h2>
 <p>I said it easy, it in fact does require a week to build up a plan, research best practices, tweak around css/js, and debugging.</p>
 <p>Finally, <a target="_blank" href="https://github.com/tianwenh/tianwenh.github.io">code is here</a>.</p><hr/><footer>EOF</footer></main></div>
   </div>
