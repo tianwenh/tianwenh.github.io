@@ -9,35 +9,37 @@ tags:
 
 Instead of learning all the exsiting static site generators, I decided to start 2022 by building my own.
 
-## What's the option?
+## What are the options?
 
-There are several options having your own blog:
+There are several options building your own blog:
 
 0. Write your own SSG;
 1. Use existing SSG(static site generator) + theme;
 2. Use existing SSG + writing custom theme;
 
-The time needed for learning/hacking existing theme and SSG is probably similar to writing your own. Even if not, knowing all the details in the beginning probably will compensate the costs later on.
+The time needed for learning/hacking existing theme and SSG is probably similar to writing your own. Even if not, knowing all the details at the very beginning will probably compensate the costs later on.
 
 ## Static site generator breakdown
 
 Break down features that I need:
 
 - Light weight dev experience;
-- MDX and customization;
-- Frontmatter;
-- SSR;
+- MDX and plugin customization;
+- Frontmatter extraction;
+- SSR support;
 - Deploy automation;
 - Dark mode;
 - Custom theming;
 
 ## Lightweight dev experience
 
-I am not working a billion dollar project. [Vite](https://vitejs.dev/) comes in handy for what I expectes. Fast load, SSR support, extensible, reasonable default setups, etc.
+I am not working for a billion dollar project. [Vite](https://vitejs.dev/) comes in handy for what I expectes. Fast load, SSR support, extensible, reasonable defaults, etc.
 
 Starting the project with its official [react-ts template](https://vitejs.dev/guide/#trying-vite-online), just a few clicks, website is up running.
 
-Other general step up (eslint, prettier) are omitted here, but you can find resources online or copy my template.
+Other general step up (eslint, prettier) are omitted here, but you can find resources online or copy [my template](https://github.com/tianwenh/vite-template).
+
+This paves way for all the later works, enables customization and so on.
 
 ## MDX and customization
 
@@ -51,7 +53,11 @@ Once MDX plugin is install, it is time for more MDX plugins:
 - `mdx-prism` for code highlighting and line highlighting;
 - `rehype-slug`, `rehype-autolink-headings` for linkify headings;
 
-Just follow github repo tutoirals, install and add to `vite.config.ts`.
+Just follow github repo tutoirals, install and add to `vite.config.ts`. I also assembled them together:
+
+```ts
+import { mdx } from '@tianwenh/vite-plugin-ssgpage';
+```
 
 ### Music notation
 
@@ -77,40 +83,48 @@ This is a pretty standard way of organizing blog posts.
 
 ## Grab pages
 
-SSG is pages(similar to config) driven. frontmatter, Pages are essentailly md/mdx files.
+SSG is pages (similar to config) driven. Pages are essentailly all the md/mdx files.
 
 I wrote a `pages` plugin for vite, so that it auto grabs pages(config) from certain folders, parse then rendering them in my custom theme.
 
+```ts
+import { pages } from '@tianwenh/vite-plugin-ssgpage';
+```
+
 Higher level, it works this way:
 
-1. `pages` folder serves all static md/mdx files;
-2. `pages` plugin grabs these file, transform and group them into `@pages`;
-3. Theme TS files import metadata from `@pages`;
-4. Rendering each static file as a post, metadata as list of posts;
+1. `/pages` folder serves all static md/mdx files;
+2. `pages` plugin grabs these files, transforms and groups them under `@pages` virtual plugin;
+3. Theme TS files import metadata from `@pages`, vite will resolve to metadata file at build time;
+4. Runtime rendering retrives metadata and convert them into pages/tags under different routes;
 
 ## Custom theming
 
 My theme is pretty minimal. I took design inspiration from [overreacted.io](https://overreacted.io). Just tweak around css to make it not ugly...
 
-I also made dark mode. It auto detects user preference, and persists user setup in local storage.
+I also made dark mode. It auto detects user system preference, and persists user setup in local storage.
 
 ## SSR
 
-To begin, follow vite SSR tutoirals.I did some modification to fit in my use case.
+To begin, follow vite SSR tutoirals. I did some modification, and put together a plugin to fit in my use case.
+
+```ts
+import { ssr } from '@tianwenh/vite-plugin-ssgpage';
+```
 
 ## Deploy automation
 
-For deployment, `gh-pages` is used for manual push. I also created a github action that auto build and deploy the latest push on `main`.
+For deployment, `gh-pages` is used for manual push. I also created a github action that auto builds and deploys the latest push from `main` to `gh-pages`.
 
 ## How to use
 
-Read project [README](https://github.com/tianwenh/tianwenh.github.io) for detailed instructions.
+I made everything generic into a [plugin](https://github.com/tianwenh/vite-plugin-ssgpage). Read [example README](https://github.com/tianwenh/vite-plugin-ssgpage/tree/main/examples/blog) for detailed instructions.
 
 For writing posts, just add new pages, and `git push`.
 
 ## Future plans
 
-I plan to make it into a package, so that I can use it for multiple purposes:
+Develop the idea to:
 
 - Serving docs for projects;
 - Jupyter Notebook-ish interactive playground for personal code study;
@@ -118,6 +132,6 @@ I plan to make it into a package, so that I can use it for multiple purposes:
 
 ## Conclusion
 
-I said it easy, it in fact does require a week to build up a plan, research best practices, tweak around css/js, and debugging.
+I said it easy, it in fact does require a few weeks to build up a plan, research best practices, tweak around css/js, and debugging.
 
-Finally, [code is here](https://github.com/tianwenh/tianwenh.github.io).
+Finally, [website source code](https://github.com/tianwenh/tianwenh.github.io) is here.
