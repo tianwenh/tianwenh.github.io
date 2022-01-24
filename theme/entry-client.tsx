@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
-import { restoreTheme } from '@tianwenh/utils/theme';
-
-restoreTheme();
+import pages from '@pages';
+import App from '@tianwenh/ssgpage-theme-blog';
+import '@tianwenh/ssgpage-theme-blog/index.css';
+import 'prismjs/themes/prism.css';
+import 'katex/dist/katex.css';
+import 'normalize.css';
 
 // Using SSR in PROD
 const render = import.meta.env.PROD ? ReactDOM.hydrate : ReactDOM.render;
@@ -12,7 +14,7 @@ const render = import.meta.env.PROD ? ReactDOM.hydrate : ReactDOM.render;
 render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <App pages={pages} home="HTW" />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('app')
