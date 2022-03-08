@@ -27,6 +27,12 @@ npm run dev
 
 for dev server.
 
+Update dependency:
+
+```
+pnpm update -r
+```
+
 ## Write new posts
 
 Simply add `md`, `mdx` under `pages/` folder.
