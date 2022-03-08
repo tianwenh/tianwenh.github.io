@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import games from './data/processed.json';
+import {
+  AreaChart,
+  Area,
+  CartesianGrid,
+  Tooltip,
+  ReferenceLine,
+  ResponsiveContainer,
+} from 'recharts';
 
 interface Champion {
   id: number;
   name: string;
 }
 interface Game {
-  result: 'WIN' | 'LOSE';
+  result: string; // 'WIN' | 'LOSE';
   champion: Champion;
   opponent: Champion;
   createdAt: string;
   position: string;
   tierInfo: {
-    tier: string;
-    division: string;
-    lp: number;
+    tier: string | null;
+    division: number | null;
+    lp: number | null;
   };
   stats: {
     kill: number;
@@ -22,14 +30,122 @@ interface Game {
     assist: number;
   };
 }
-console.log(games);
-export const LPGains: React.FC = () => {
-  const [count, setCount] = useState(0);
+const sortedGames: Game[] = games.reverse();
+
+// eslint-disable-next-line
+const CustomTooltip = (props: any) => {
+  if (!props.active || !props.payload) {
+    return null;
+  }
+  const game: Game = props.payload[0].payload;
+  const date = new Date(game.createdAt);
+  const result = game.result === 'WIN' ? 'Victory' : 'Defeat';
+  const lp = game.tierInfo.tier
+    ? `${game.tierInfo.tier} ${game.tierInfo.division} ${game.tierInfo.lp}LP`
+    : 'N/A';
   return (
-    <div>
-      {count}
-      <button onClick={() => setCount(count + 1)}>+1</button>
+    <div
+      className="card pages-card"
+      style={{
+        background: 'var(--color-background)',
+        padding: 'var(--spacing-3)',
+      }}
+    >
+      <div>
+        {result} - {date.getDate()}/{date.getMonth()}
+      </div>
+      <div>
+        {game.position}: {game.champion.name} vs {game.opponent.name}
+      </div>
+      <div>
+        KDA: {game.stats.kill}/{game.stats.death}/{game.stats.assist}
+      </div>
+      <div>Rank: {lp}</div>
     </div>
+  );
+};
+
+export const LPGains: React.FC = () => {
+  return (
+    <ResponsiveContainer height={300}>
+      <AreaChart data={sortedGames}>
+        <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+        <Area
+          type="monotone"
+          dataKey={(d: Game) => {
+            const { tier, division, lp } = d.tierInfo;
+            if (tier === null || division === null || lp === null) {
+              return 0;
+            }
+            const order = ['IRON', 'BRONZE', 'SILVER', 'GOLD'];
+            const idx = order.indexOf(tier) + 1;
+            const realLp = idx * 400 - division * 100 + lp;
+            return realLp;
+          }}
+          stroke="var(--color-primary)"
+          fill="var(--color-primary)"
+        />
+        <Tooltip content={<CustomTooltip />} />
+        <ReferenceLine
+          y={400}
+          label={{
+            value: 'Bronze',
+            fill: 'var(--color-text)',
+          }}
+          stroke="var(--color-title)"
+          strokeDasharray="3 3"
+        />
+        <ReferenceLine
+          y={800}
+          label={{
+            value: 'Silver',
+            fill: 'var(--color-text)',
+          }}
+          stroke="var(--color-title)"
+          strokeDasharray="3 3"
+        />
+        <ReferenceLine
+          y={1200}
+          label={{
+            value: 'Gold',
+            fill: 'var(--color-text)',
+          }}
+          stroke="var(--color-title)"
+        />
+        <ReferenceLine
+          x="10"
+          stroke="var(--color-title)"
+          label={{
+            value: 'Rpmt',
+            fill: 'var(--color-text)',
+          }}
+        />
+        <ReferenceLine
+          x="35"
+          stroke="var(--color-title)"
+          label={{
+            value: 'E.B.',
+            fill: 'var(--color-text)',
+          }}
+        />
+        <ReferenceLine
+          x="68"
+          stroke="var(--color-title)"
+          label={{
+            value: 'S.1.B.',
+            fill: 'var(--color-text)',
+          }}
+        />
+        <ReferenceLine
+          x="127"
+          stroke="var(--color-title)"
+          label={{
+            value: 'L.G.G.',
+            fill: 'var(--color-text)',
+          }}
+        />
+      </AreaChart>
+    </ResponsiveContainer>
   );
 };
 
