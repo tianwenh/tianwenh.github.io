@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="description" content="blog about music" />
+  <meta name="author" content="tianwenh">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAt9JREFUWEftV01IYmEUPZ+EiwgiWoiLoCct0wqEqIiCoLICRQg3/VC0mmgTQTXOZDkktGhRkJTSjxW4qKhVFJlCRKsWtShoU5ua2QRKirapF/dCMeYIMfFy44W3efreOd+5557vfQKASpKk7wC+CSG0+IKSZfkPAPfNzY1LSJL0Qwjx6wtwUyBkWf5JBH5/1crfMyAlhE6nkzOx+lfMLIGsAikKmEwm2Gw27Ozs8EU1NDSE0tLSD3k1Go1iYGAAXq8XKpUKfX19kOX0Pk8hQA+Mjo5iZmYGs7OzDLqwsICqqqokArm5uRBCIB6PJwFcXV2hvb0dgUAAkiShsrIS9/f3acl/iMC/nj4+PoZWq0V5eTlo1e9rcXER9fX1sFqtOD8/55/Hx8fR2tqKcDiMxsZGvqcYgbGxMXR3d3M7dnd3GWxra4sJU1VUVODh4UE5Al1dXXA4HJiamoLH42HQs7MzRCIRFBUVvSmjmAJ1dXVYWlrC+vo6E9FoNDg5OcHy8jJ6enrY2Nvb2xAmkynJotQzMuLfJvwfDxQXF+Pw8BChUIjfV1NTg9XVVXR2dmJtbQ1utxvT09MQcpoZ+SyBnJwcXF5e4vr6Gs3NzaCWkC/KysoQDAZxenqK/v5+CIfDkaRAdXU1O/SzBEg1Wn1hYSEMBgOcTicaGhpYCb/fj/z8fLS0tChnQiKwsrKC2tpaGI1GzM3N4enpiVvgcrlgsVg43BQzIRGYmJhAR0cHzGYzKBf29vbYkK9hRzmhKIHe3l7Y7Xa+JicnuQ0+n49bQaM5PDysLIFXoP39fTQ1NfH4HR0dcURTVJMiiipQUlICAo/FYsjLywNlw+3tLWhCLi4ukEgklCWgVqsZiHbFx8dH6PV6PD8/c6wcHBxAp9OlEmhra2OnbmxsYHNzM+0uRkFCI0ay0o6Yrubn51FQUIC7uzsMDg6+/W1kZIT3g+wXUVaBzCuQ8aNZxg+nmT6evwD1qc7gHFaxDAAAAABJRU5ErkJggg==" />
+  <title>HTW</title>
+  <script type="module" crossorigin src="/assets/index.1608e881.js"></script>
+  <link rel="stylesheet" href="/assets/index.ee07c67b.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="layout-container"><header class="layout-head"><h3><a href="/">HTW</a><span class="dark-toggle">🌔</span></h3></header><main><header><h2 class="page-title"><a href="/story-of-two-bits">Story of two bits</a></h2><small><time dateTime="4/26/2022" class="page-info">4/26/2022</time></small></header><hr/><blockquote>
+<p>Check out <a target="_blank" href="https://wiki.huatianwen.com/typescript/type-config">type-config wiki</a> for a more detailed technical breakdown.</p>
+</blockquote>
+<p>Among countless other complex things, but let&#x27;s discuss a simple case: the relation between two binary bits.</p>
+<h2 id="state-and-combination"><a class="header-anchor" href="#state-and-combination">#</a>State and combination</h2>
+<table><thead><tr><th>#bit</th><th>#State</th><th>#Combination of state</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>3(2^2-1)</td></tr><tr><td>2</td><td>4(2^2)</td><td>15(2^4-1)</td></tr></tbody></table>
+<p>A bit by itself as commonly defined can either be <code>0</code> or <code>1</code>. Cardinality of state is 2.</p>
+<p>Two bits together can be: <code>00</code>, <code>01</code>, <code>10</code>, <code>11</code>. Cardinality of state is <code>2^2 = 4</code>.</p>
+<p>Combinations of state are combinations with all different sample number. Cardinality of single bit is <code>C(2,2)+C(2,1)</code>, or <code>2^2-C(2,0)</code>. Cardinality of 2 bits is <code>C(4,4)+C(4,3)+C(4,2)+C(4,1)</code> or <code>2^4-C(4,0)</code>.</p>
+<p>Math works aside, things clearly getting more complex when it goes either vertically (number of bits) or horizontally (composition of primitives).</p>
+<h2 id="combination-pattern"><a class="header-anchor" href="#combination-pattern">#</a>Combination pattern</h2>
+<p>How would you give names to that 3 combinations?</p>
+<h3 id="1-1-or-0"><a class="header-anchor" href="#1-1-or-0">#</a>1. <code>1</code> or <code>0</code></h3>
+<p>A bit with result.</p>
+<h3 id="1-1-0"><a class="header-anchor" href="#1-1-0">#</a>1. <code>1</code> <code>0</code></h3>
+<p>A bit with possibilities</p>
+<h2 id="more-combination-pattern"><a class="header-anchor" href="#more-combination-pattern">#</a>More combination pattern</h2>
+<p>How would you give names to that 15 combinations?</p>
+<p>Here is my try:</p>
+<h3 id="1-11-10-01-00"><a class="header-anchor" href="#1-11-10-01-00">#</a>1. <code>11 10 01 00</code></h3>
+<p>Roommates</p>
+<ul>
+<li><code>a</code>: independent</li>
+<li><code>b</code>: independent</li>
+</ul>
+<p>They have their own lifes... It won&#x27;t change a thing if they split.</p>
+<h3 id="2-11-or-10-or-01-or-00"><a class="header-anchor" href="#2-11-or-10-or-01-or-00">#</a>2. <code>11</code> or <code>10</code> or <code>01</code> or <code>00</code></h3>
+<p>Commited couple</p>
+<ul>
+<li><code>a</code>: fixed</li>
+<li><code>b</code>: fixed</li>
+</ul>
+<p>They accepted the offer...</p>
+<h3 id="3-11-10-or-11-01-or-10-00-or-01-00"><a class="header-anchor" href="#3-11-10-or-11-01-or-10-00-or-01-00">#</a>3. <code>11 10</code> or <code>11 01</code> or <code>10 00</code> or <code>01 00</code></h3>
+<p>Not yet committed</p>
+<ul>
+<li><code>a</code>: independent</li>
+<li><code>b</code>: fixed</li>
+</ul>
+<p>Still waiting for an anwser...</p>
+<h3 id="4-10-01-or-11-00"><a class="header-anchor" href="#4-10-01-or-11-00">#</a>4. <code>10 01</code> or <code>11 00</code></h3>
+<p>Someone needs a life</p>
+<ul>
+<li><code>a</code>: independent</li>
+<li><code>b</code>: dependent on <code>a</code>
+<ul>
+<li><code>a</code></li>
+<li>!<code>a</code></li>
+</ul>
+</li>
+</ul>
+<p>It is not yet clear who is that someone tho...</p>
+<h3 id="5-11-10-00-or-11-01-00-or-11-10-01-or-10-01-00"><a class="header-anchor" href="#5-11-10-00-or-11-01-00-or-11-10-01-or-10-01-00">#</a>5. <code>11 10 00</code> or <code>11 01 00</code> or <code>11 10 01</code> or <code>10 01 00</code></h3>
+<p>Too much conditions</p>
+<ul>
+<li><code>a</code>: independent</li>
+<li><code>b</code>:<!-- -->
+<ul>
+<li>independent if <code>a</code> is ..</li>
+<li>dependent if <code>a</code> is ..</li>
+</ul>
+</li>
+</ul>
+<p>While still negotiating, it is likely to break.</p>
+<h2 id="my-tldr"><a class="header-anchor" href="#my-tldr">#</a>My TL;DR</h2>
+<ul>
+<li>Adding verticals/dimensions/... is exponential;</li>
+<li>Patterns: no such thing as unique;</li>
+<li>&quot;Dependency management is hard&quot;;</li>
+<li>Abstraction is false: if you read <a target="_blank" href="https://wiki.huatianwen.com/typescript/type-config">type-config wiki</a>, there are just too many missing details and reasoning process here;</li>
+</ul><hr/><footer>EOF</footer></main></div>
+  </div>
+  
+</body>
+
+</html>
